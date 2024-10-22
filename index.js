@@ -2,16 +2,20 @@ const searchInput = document.getElementById("search-input")
 const searchBtn = document.getElementById("search-btn")
 const main = document.querySelector("main")
 let watchlist = JSON.parse(localStorage.getItem("watchlist")) || []
+const loadingMessage = document.getElementById("loading")
 
 // Variables for adding next page when its scrolled to the bottom
 const throttledBottomed = throttle(addPage, 3000)
 let pageNumber = 1
 
 if(searchBtn) {
-    searchBtn.addEventListener("click", (e) => {
+    searchBtn.addEventListener("click", async (e) => {
+        e.preventDefault()
         main.innerHTML = ``
+        loadingMessage.style.display = "block"
         pageNumber = 1
-        handleSearch(e, pageNumber)
+        await handleSearch(e, pageNumber)
+        loadingMessage.style.display = "none"
     })
 }
 
@@ -30,18 +34,14 @@ if(currentPage.includes("watchlist.html")) {
 
 // Takes the result of search according to the current page
 async function handleSearch(e, page) {
-    if(e && e.preventDefault) {
-        e.preventDefault()
-    }
-    
     if(searchInput && searchInput.value) {
-        const response = await fetch(`http://www.omdbapi.com/?apikey=e021ea65&type=movie&s=${searchInput.value}&page=${page}`)
+        const response = await fetch(`https://www.omdbapi.com/?apikey=e021ea65&type=movie&s=${searchInput.value}&page=${page}`)
         const movies = await response.json()
         
         // Adding Plot, imdbRating, Runtime and Genre attributes to the movies of the page. By default, API do not give their plot properties. Only when fetching with single movie search with parameter of "t", instead of "s"
         if(movies.Search) {
             for(let movie of movies.Search) {
-                const response = await fetch(`http://www.omdbapi.com/?apikey=e021ea65&type=movie&t=${movie.Title}&i=${movie.imdbID}`)
+                const response = await fetch(`https://www.omdbapi.com/?apikey=e021ea65&type=movie&t=${movie.Title}&i=${movie.imdbID}`)
                 const movieFound = await response.json()
                 movie.Plot = movieFound.Plot
                 movie.imdbRating = movieFound.imdbRating
@@ -144,7 +144,7 @@ function loadContent(movies) {
         watchlistBtns.forEach((btn) => {
             btn.addEventListener("click", async () => {
                 if(btn.classList.contains("add")) {
-                    const response = await fetch(`http://www.omdbapi.com/?apikey=e021ea65&type=movie&i=${btn.id}`)
+                    const response = await fetch(`https://www.omdbapi.com/?apikey=e021ea65&type=movie&i=${btn.id}`)
                     const movieFound = await response.json()
                     watchlist.push(movieFound)
                     localStorage.setItem("watchlist", JSON.stringify(watchlist))
