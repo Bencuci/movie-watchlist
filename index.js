@@ -33,7 +33,7 @@ if(currentPage.includes("watchlist.html")) {
 }
 
 // Takes the result of search according to the current page
-async function handleSearch(e, page) {
+async function handleSearch(page) {
     if(searchInput && searchInput.value) {
         const response = await fetch(`https://www.omdbapi.com/?apikey=e021ea65&type=movie&s=${searchInput.value}&page=${page}`)
         const movies = await response.json()
