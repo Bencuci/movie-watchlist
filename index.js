@@ -12,10 +12,8 @@ if(searchBtn) {
     searchBtn.addEventListener("click", async (e) => {
         e.preventDefault()
         main.innerHTML = ``
-        loadingMessage.style.display = "block"
         pageNumber = 1
-        await handleSearch(e, pageNumber)
-        loadingMessage.style.display = "none"
+        handleSearch(pageNumber)
     })
 }
 
@@ -34,6 +32,7 @@ if(currentPage.includes("watchlist.html")) {
 
 // Takes the result of search according to the current page
 async function handleSearch(page) {
+    loadingMessage.style.display = "block"
     if(searchInput && searchInput.value) {
         const response = await fetch(`https://www.omdbapi.com/?apikey=e021ea65&type=movie&s=${searchInput.value}&page=${page}`)
         const movies = await response.json()
@@ -48,10 +47,11 @@ async function handleSearch(page) {
                 movie.Runtime = movieFound.Runtime
                 movie.Genre = movieFound.Genre
             }
-            // console.log(movies.Search)
+            loadingMessage.style.display = "none"
             loadContent(movies.Search)
         }
     }
+    loadingMessage.style.display = "none"
 }
 
 function loadContent(movies) {
@@ -172,14 +172,14 @@ window.addEventListener("scroll", function() {
     const scrollableHeight = document.documentElement.scrollHeight
     const scrollPosition = window.innerHeight + window.scrollY
     
-    if(scrollPosition >= scrollableHeight - 1) {
+    if(scrollPosition >= scrollableHeight - 1000) {
         throttledBottomed()
     }
 })
 
 function addPage() {
     pageNumber++
-    handleSearch(null, pageNumber)
+    handleSearch(pageNumber)
 }
 
 function throttle(func, delay) {
