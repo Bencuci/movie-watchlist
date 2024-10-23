@@ -5,4 +5,7 @@ npm install
 npm start
 ```
 
-Live deploy: https://ben-watchlist.netlify.app/
+When building locally, please change the API key from fetch request.
+And update link and script tags in index.html and watchlist.html.
+
+# Live deploy: https://ben-watchlist.netlify.app/
