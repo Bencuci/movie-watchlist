@@ -5,4 +5,4 @@ npm install
 npm start
 ```
 
-Head over to https://vitejs.dev/ to learn more about configuring vite
+Live deploy: https://ben-watchlist.netlify.app/
