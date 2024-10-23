@@ -180,6 +180,7 @@ span {
 }
 
 .watchlist-btn {
+    color: #121212;
     width: 19px;           
     height: 19px;           
     border-radius: 50%;    
@@ -191,6 +192,7 @@ span {
     cursor: pointer;        
     outline: none;          
     margin: 0 0.2em 0 0.1em;
+    box-sizing: border-box;
 }
 
 button, label {
