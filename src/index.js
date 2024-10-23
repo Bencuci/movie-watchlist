@@ -55,6 +55,7 @@ async function handleSearch(page) {
 }
 
 function loadContent(movies) {
+    main.textContent = ""
     for(let movie of movies) {
         if (!movie.Poster || movie.Poster === "N/A") {
             continue
