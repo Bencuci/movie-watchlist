@@ -85,6 +85,10 @@ a {
     border-radius: 5px;
 }
 
+a:nth-child(2):hover {
+    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.3);
+}
+
 /* Forms and Inputs */
 form {
     position: absolute;
@@ -112,12 +116,22 @@ input {
     width: 100%;
 }
 
+input:focus {
+    border: none;
+    outline: none;
+    box-shadow: 0 0 9px 2px rgba(255, 255, 255, 0.5);
+}
+
 form button {
     padding: 0 35px;
     color: whitesmoke;
     background-color: #4B4B4B;
-    margin-left: -10px;
+    margin-left: -112px;
     margin-right: 2.625em;
+}
+
+form button:hover {
+    background-color: #121212;
 }
 
 form button,
