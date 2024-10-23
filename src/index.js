@@ -144,7 +144,7 @@ function loadContent(movies) {
         watchlistBtns.forEach((btn) => {
             btn.addEventListener("click", async () => {
                 if(btn.classList.contains("add")) {
-                    const response = await fetch(`https://www.omdbapi.com/?apikey=e021ea65&type=movie&i=${btn.id}`)
+                    const response = await fetch(`https://www.omdbapi.com/?apikey=ccd28c4a&type=movie&i=${btn.id}`)
                     const movieFound = await response.json()
                     watchlist.push(movieFound)
                     localStorage.setItem("watchlist", JSON.stringify(watchlist))
@@ -172,7 +172,7 @@ window.addEventListener("scroll", function() {
     const scrollableHeight = document.documentElement.scrollHeight
     const scrollPosition = window.innerHeight + window.scrollY
     
-    if(scrollPosition >= scrollableHeight - 1000) {
+    if(scrollPosition >= scrollableHeight - 350) {
         throttledBottomed()
     }
 })
