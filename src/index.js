@@ -3,6 +3,7 @@ const searchBtn = document.getElementById("search-btn")
 const main = document.querySelector("main")
 let watchlist = JSON.parse(localStorage.getItem("watchlist")) || []
 const loadingMessage = document.getElementById("loading")
+import "./index.css"
 
 // Variables for adding next page when its scrolled to the bottom
 const throttledBottomed = throttle(addPage, 3000)
