@@ -19,7 +19,7 @@ if(searchBtn) {
 
 // Check the current page and load the watchlist if needed
 let currentPage = window.location.href;
-if(currentPage.includes("watchlist.html")) {
+if(currentPage.includes("watchlist")) {
     if(watchlist && watchlist.length >= 1) {
         main.textContent = ""
         main.style.paddingTop = "0.8em";
