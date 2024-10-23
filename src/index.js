@@ -77,7 +77,7 @@ function loadContent(movies) {
                     title.textContent = movie.Title
                     
                     const starIcon = document.createElement("img")
-                    starIcon.src = "images/starIcon.png"
+                    starIcon.src = "../images/starIcon.png"
                     starIcon.className = "star-icon"
                     
                     const imdbRating = document.createElement("span")
