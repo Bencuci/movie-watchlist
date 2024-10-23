@@ -201,11 +201,13 @@ button, label {
 hr {
     width: 84vw;
     max-width: 900px;
-    color: #2C2C2C;
+    border: 1px solid #4b4b4b;
 }
 
 #loading {
-    background-color: #121212;
+    background-color: #4b4b4b;
+    border-radius: 8px;
+    padding:.5em 1em;
     color: white;
     font-size: 2rem;
     position: fixed;
