@@ -3,6 +3,7 @@ const searchBtn = document.getElementById("search-btn")
 const main = document.querySelector("main")
 let watchlist = JSON.parse(localStorage.getItem("watchlist")) || []
 const loadingMessage = document.getElementById("loading")
+const searchForMoviesBtn = document.getElementById("search-for-movies-btn")
 
 // Variables for adding next page when its scrolled to the bottom
 const throttledBottomed = throttle(addPage, 3000)
@@ -17,16 +18,20 @@ if(searchBtn) {
     })
 }
 
+if(searchForMoviesBtn) {
+    searchForMoviesBtn.addEventListener("click", () => {
+        main.innerHTML = ``
+    })
+}
+
 // Check the current page and load the watchlist if needed
 let currentPage = window.location.href;
 if(currentPage.includes("/watchlist")) {
     if(watchlist && watchlist.length >= 1) {
-        main.textContent = ""
-        main.style.paddingTop = "0.8em";
+        main.innerHTML = ""
+        main.style.paddingTop = "0.8em"
         main.style.justifyContent = "start"
         loadContent(watchlist)
-    } else {
-        console.log("No movies found in the watchlist");
     }
 }
 
@@ -55,7 +60,6 @@ async function handleSearch(page) {
 }
 
 function loadContent(movies) {
-    main.textContent = ""
     for(let movie of movies) {
         if (!movie.Poster || movie.Poster === "N/A") {
             continue
